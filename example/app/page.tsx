@@ -352,7 +352,7 @@ export default function Home() {
           onStatusChange={handleStatusChange}
           style={
             darkMode
-              ? {
+              ? ({
                   '--zss-badge-bg': '#1f2937',
                   '--zss-badge-text-color': '#f9fafb',
                   '--zss-popover-bg': '#111827',
@@ -360,7 +360,7 @@ export default function Home() {
                   '--zss-text-secondary': '#9ca3af',
                   '--zss-border-color': '#374151',
                   '--zss-hover-bg': '#1f2937',
-                }
+                } as React.CSSProperties)
               : {}
           }
         />

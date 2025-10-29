@@ -1,20 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable experimental features for better performance
-  experimental: {
-    // Use edge runtime by default for API routes
-    runtime: 'edge',
-  },
-
-  // Disable telemetry
-  telemetry: false,
-
   // Compress responses
   compress: true,
 
   // Production optimizations
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
+
+  // Output file tracing root for workspace
+  outputFileTracingRoot: require('path').join(__dirname, '../'),
 
   // Headers for security
   async headers() {

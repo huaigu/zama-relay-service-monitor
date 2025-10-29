@@ -1,0 +1,60 @@
+{
+  "name": "@zama-ai/service-status-monitor",
+  "version": "1.0.0",
+  "description": "Lightweight React/Next.js component for monitoring Betterstack service status with real-time updates",
+  "author": "Zama",
+  "license": "MIT",
+  "keywords": [
+    "zama",
+    "betterstack",
+    "service-status",
+    "status-monitor",
+    "react",
+    "nextjs",
+    "uptime",
+    "monitoring",
+    "badge"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zama-ai/service-status-monitor.git"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vite-plugin-dts": "^3.7.0"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}

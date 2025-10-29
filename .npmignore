@@ -1,0 +1,43 @@
+# Source files
+src/
+*.ts
+*.tsx
+!*.d.ts
+
+# Configuration files
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+.eslintrc*
+.prettierrc*
+
+# Development files
+.vscode/
+.idea/
+.DS_Store
+*.log
+
+# Git files
+.git/
+.gitignore
+
+# Testing
+coverage/
+.nyc_output/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation (optional, can remove if you want to include)
+# README.md
+# CHANGELOG.md
+
+# Misc
+node_modules/
+.env*

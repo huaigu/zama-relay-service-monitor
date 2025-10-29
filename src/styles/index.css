@@ -1,0 +1,322 @@
+/* CSS Variables for customization */
+:root {
+  --zss-badge-size: 50px;
+  --zss-badge-padding: 12px 16px;
+  --zss-badge-border-radius: 24px;
+  --zss-badge-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --zss-badge-bg: #ffffff;
+  --zss-badge-text-color: #374151;
+  --zss-badge-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --zss-badge-font-size: 14px;
+  --zss-badge-font-weight: 500;
+  --zss-badge-z-index: 9999;
+
+  --zss-indicator-size: 10px;
+  --zss-indicator-margin-right: 8px;
+
+  --zss-popover-width: 320px;
+  --zss-popover-bg: #ffffff;
+  --zss-popover-border-radius: 12px;
+  --zss-popover-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  --zss-popover-padding: 20px;
+
+  --zss-primary-color: #3b82f6;
+  --zss-text-color: #111827;
+  --zss-text-secondary: #6b7280;
+  --zss-border-color: #e5e7eb;
+  --zss-hover-bg: #f3f4f6;
+}
+
+/* Badge Container */
+.zss-badge {
+  position: fixed;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--zss-badge-padding);
+  background: var(--zss-badge-bg);
+  border-radius: var(--zss-badge-border-radius);
+  box-shadow: var(--zss-badge-shadow);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: var(--zss-badge-z-index);
+  font-family: var(--zss-badge-font-family);
+}
+
+.zss-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.zss-badge:active {
+  transform: translateY(0);
+}
+
+.zss-badge:focus {
+  outline: 2px solid var(--zss-primary-color);
+  outline-offset: 2px;
+}
+
+/* Badge Positions */
+.zss-position-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.zss-position-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.zss-position-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.zss-position-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+/* Badge Content */
+.zss-badge-content {
+  display: flex;
+  align-items: center;
+  gap: var(--zss-indicator-margin-right);
+}
+
+.zss-badge-text {
+  color: var(--zss-badge-text-color);
+  font-size: var(--zss-badge-font-size);
+  font-weight: var(--zss-badge-font-weight);
+  white-space: nowrap;
+}
+
+/* Status Indicator */
+.zss-indicator {
+  display: inline-block;
+  width: var(--zss-indicator-size);
+  height: var(--zss-indicator-size);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.zss-pulse {
+  animation: zss-pulse-animation 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes zss-pulse-animation {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Popover Backdrop */
+.zss-popover-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: calc(var(--zss-badge-z-index) + 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: zss-fade-in 0.2s ease;
+}
+
+@keyframes zss-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Popover Container */
+.zss-popover {
+  width: var(--zss-popover-width);
+  max-width: 90vw;
+  background: var(--zss-popover-bg);
+  border-radius: var(--zss-popover-border-radius);
+  box-shadow: var(--zss-popover-shadow);
+  overflow: hidden;
+  animation: zss-slide-up 0.3s ease;
+  font-family: var(--zss-badge-font-family);
+}
+
+@keyframes zss-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Popover Header */
+.zss-popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--zss-popover-padding);
+  border-bottom: 1px solid var(--zss-border-color);
+}
+
+.zss-popover-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--zss-text-color);
+}
+
+.zss-popover-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--zss-text-secondary);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.zss-popover-close:hover {
+  background-color: var(--zss-hover-bg);
+}
+
+/* Popover Content */
+.zss-popover-content {
+  padding: var(--zss-popover-padding);
+}
+
+/* Status Row */
+.zss-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--zss-border-color);
+}
+
+.zss-status-row:last-of-type {
+  border-bottom: none;
+  margin-bottom: 16px;
+}
+
+.zss-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--zss-text-secondary);
+}
+
+.zss-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zss-text-color);
+}
+
+/* Status Badge in Popover */
+.zss-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zss-status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.zss-status-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zss-text-color);
+}
+
+/* Availability */
+.zss-availability {
+  color: var(--zss-primary-color);
+}
+
+/* Timestamp */
+.zss-timestamp {
+  font-size: 12px;
+  color: var(--zss-text-secondary);
+}
+
+/* Refresh Button */
+.zss-refresh-button {
+  width: 100%;
+  padding: 10px 16px;
+  background-color: var(--zss-primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.zss-refresh-button:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.zss-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error State */
+.zss-error {
+  text-align: center;
+  padding: 20px;
+}
+
+.zss-error-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.zss-error-message {
+  font-size: 14px;
+  color: var(--zss-text-secondary);
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .zss-badge {
+    padding: 10px 14px;
+  }
+
+  .zss-badge-text {
+    font-size: 13px;
+  }
+
+  .zss-popover {
+    width: 90vw;
+  }
+
+  .zss-popover-padding {
+    padding: 16px;
+  }
+}

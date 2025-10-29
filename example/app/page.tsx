@@ -206,22 +206,24 @@ export default function Home() {
                 <br />
                 {'  '}
                 <span className="text-yellow-400">style</span>=
-                <span className="text-orange-400">{'{{'}}</span>
+                <span className="text-orange-400">{'{'}</span>
+                <span className="text-orange-400">{'{'}</span>
                 <br />
                 {'    '}
-                <span className="text-green-400">'--zss-badge-bg'</span>:{' '}
-                <span className="text-green-400">'#1f2937'</span>,
+                <span className="text-green-400">&apos;--zss-badge-bg&apos;</span>:{' '}
+                <span className="text-green-400">&apos;#1f2937&apos;</span>,
                 <br />
                 {'    '}
-                <span className="text-green-400">'--zss-badge-text-color'</span>:{' '}
-                <span className="text-green-400">'#ffffff'</span>,
+                <span className="text-green-400">&apos;--zss-badge-text-color&apos;</span>:{' '}
+                <span className="text-green-400">&apos;#ffffff&apos;</span>,
                 <br />
                 {'    '}
-                <span className="text-green-400">'--zss-primary-color'</span>:{' '}
-                <span className="text-green-400">'#3b82f6'</span>,
+                <span className="text-green-400">&apos;--zss-primary-color&apos;</span>:{' '}
+                <span className="text-green-400">&apos;#3b82f6&apos;</span>,
                 <br />
                 {'  '}
-                <span className="text-orange-400">{'}}'}</span>
+                <span className="text-orange-400">{'}'}</span>
+                <span className="text-orange-400">{'}'}</span>
                 <br />
                 {'/>'}
               </code>

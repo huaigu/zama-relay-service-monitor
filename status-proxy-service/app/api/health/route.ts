@@ -6,7 +6,6 @@ export async function GET() {
     timestamp: new Date().toISOString(),
     service: 'zama-status-proxy',
     version: '1.0.0',
-    uptime: process.uptime ? `${Math.floor(process.uptime())}s` : 'N/A',
   };
 
   return NextResponse.json(health, {

@@ -7,9 +7,6 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
 
-  // Output file tracing root for workspace
-  outputFileTracingRoot: require('path').join(__dirname, '../'),
-
   // Headers for security
   async headers() {
     return [

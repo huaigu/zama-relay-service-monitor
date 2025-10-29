@@ -301,7 +301,131 @@ import type {
 
 ### CORS errors
 
-If you're getting CORS errors, make sure your API endpoint allows cross-origin requests. The Betterstack API should have proper CORS headers.
+**Important**: The Betterstack status API does not include CORS headers, which means direct browser requests will fail with:
+
+```
+Access to fetch at 'https://status.zama.ai/index.json' from origin 'http://localhost:3000'
+has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present.
+```
+
+**Solution**: You need to proxy the API requests through your backend. Here are framework-specific solutions:
+
+#### Next.js (Recommended)
+
+Create an API route to proxy the requests:
+
+```typescript
+// app/api/status/route.ts (App Router)
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  try {
+    const response = await fetch('https://status.zama.ai/index.json', {
+      next: { revalidate: 30 }, // Cache for 30 seconds
+    });
+    const data = await response.json();
+
+    return NextResponse.json(data, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
+      },
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to fetch service status' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    },
+  });
+}
+```
+
+Then use the component with the proxy URL:
+
+```tsx
+<ServiceStatusBadge apiUrl="/api/status" />
+```
+
+#### Create React App
+
+Add proxy configuration to `package.json`:
+
+```json
+{
+  "proxy": "https://status.zama.ai"
+}
+```
+
+Then update the component:
+
+```tsx
+<ServiceStatusBadge apiUrl="/index.json" />
+```
+
+#### Vite
+
+Configure proxy in `vite.config.ts`:
+
+```typescript
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  server: {
+    proxy: {
+      '/api/status': {
+        target: 'https://status.zama.ai',
+        changeOrigin: true,
+        rewrite: (path) => '/index.json'
+      }
+    }
+  }
+});
+```
+
+Then use:
+
+```tsx
+<ServiceStatusBadge apiUrl="/api/status" />
+```
+
+#### Express Backend
+
+Create a dedicated proxy endpoint:
+
+```javascript
+app.get('/api/status', async (req, res) => {
+  try {
+    const response = await fetch('https://status.zama.ai/index.json');
+    const data = await response.json();
+
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Cache-Control', 'public, max-age=30');
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch status' });
+  }
+});
+```
+
+#### Custom Backend (Any Framework)
+
+The key requirements are:
+1. Fetch from `https://status.zama.ai/index.json` on the server side
+2. Add CORS headers to your response: `Access-Control-Allow-Origin: *`
+3. Optionally add caching headers to reduce API calls
+4. Pass your proxy endpoint URL to the `apiUrl` prop
+
+For a complete working example, see the [example app](../../example/README.md).
 
 ### Next.js SSR issues
 

@@ -142,6 +142,66 @@ export default function RootLayout({ children }) {
 
 For more examples and API documentation, see the [package README](./packages/core/README.md).
 
+## ⚠️ CORS Limitation & Solutions
+
+The Betterstack status API does not include CORS headers, which prevents direct browser requests from working. You'll see this error:
+
+```
+Access-Control-Allow-Origin header is present on the requested resource
+```
+
+### Solutions by Framework
+
+**Next.js (Recommended)**: Use an API route as a server-side proxy (see [example/app/api/status/route.ts](./example/app/api/status/route.ts))
+
+```tsx
+// app/api/status/route.ts
+export async function GET() {
+  const response = await fetch('https://status.zama.ai/index.json');
+  const data = await response.json();
+  return NextResponse.json(data, {
+    headers: { 'Access-Control-Allow-Origin': '*' },
+  });
+}
+
+// Component usage
+<ServiceStatusBadge apiUrl="/api/status" />
+```
+
+**Create React App**: Use proxy in `package.json`
+```json
+{
+  "proxy": "https://status.zama.ai"
+}
+```
+
+**Vite**: Configure proxy in `vite.config.ts`
+```typescript
+export default defineConfig({
+  server: {
+    proxy: {
+      '/api/status': {
+        target: 'https://status.zama.ai',
+        changeOrigin: true,
+        rewrite: (path) => '/index.json'
+      }
+    }
+  }
+});
+```
+
+**Express Backend**: Create a dedicated proxy endpoint
+```javascript
+app.get('/api/status', async (req, res) => {
+  const response = await fetch('https://status.zama.ai/index.json');
+  const data = await response.json();
+  res.header('Access-Control-Allow-Origin', '*');
+  res.json(data);
+});
+```
+
+For detailed implementation guides, see [CORS_SOLUTIONS.md](./CORS_SOLUTIONS.md).
+
 ## 🎨 Live Demo
 
 The example app demonstrates all features of the package:

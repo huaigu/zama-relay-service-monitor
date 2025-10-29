@@ -5,7 +5,7 @@ import { StatusPopover } from './StatusPopover';
 import { getStatusColorHex } from '../utils/statusMapper';
 
 const DEFAULT_SERVICE_NAME = 'Relayer - Testnet';
-const DEFAULT_API_URL = 'https://status.zama.ai/index.json';
+const DEFAULT_API_URL = 'https://zama-relay-service-monitor-example.vercel.app/api/status';
 const DEFAULT_REFRESH_INTERVAL = 60; // seconds
 const DEFAULT_POSITION = 'bottom-right';
 

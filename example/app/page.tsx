@@ -349,7 +349,6 @@ export default function Home() {
 
         {/* The actual status badge component */}
         <ServiceStatusBadge
-          apiUrl="/api/status"
           onStatusChange={handleStatusChange}
           style={
             darkMode

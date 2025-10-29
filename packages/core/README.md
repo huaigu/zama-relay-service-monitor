@@ -37,7 +37,9 @@ pnpm add @zama-ai/service-status-monitor
 
 ## 🚀 Quick Start
 
-### Basic Usage (React)
+### ✅ No Configuration Needed!
+
+The package now includes a hosted proxy service, so you can use it immediately without any backend setup:
 
 ```tsx
 import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
@@ -52,6 +54,8 @@ function App() {
   );
 }
 ```
+
+That's it! The component will automatically fetch status data from the hosted proxy service at `https://zama-relay-service-monitor-example.vercel.app/api/status`.
 
 ### Next.js App Router
 
@@ -105,7 +109,7 @@ Main component to display the service status badge.
 | Prop              | Type                                                      | Default                                 | Description                                         |
 | ----------------- | --------------------------------------------------------- | --------------------------------------- | --------------------------------------------------- |
 | `serviceName`     | `string`                                                  | `"Relayer - Testnet"`                   | Name of the service to monitor                      |
-| `apiUrl`          | `string`                                                  | `"https://status.zama.ai/index.json"`   | Betterstack API URL                                 |
+| `apiUrl`          | `string`                                                  | `"https://zama-relay-service-monitor-example.vercel.app/api/status"` | Proxy API URL (CORS-enabled)     |
 | `refreshInterval` | `number`                                                  | `60`                                    | Auto-refresh interval in seconds (30-300)           |
 | `position`        | `'bottom-right' \| 'bottom-left' \| 'top-right' \| 'top-left'` | `'bottom-right'`                        | Badge position on screen                            |
 | `className`       | `string`                                                  | `''`                                    | Custom CSS class name                               |
@@ -301,7 +305,9 @@ import type {
 
 ### CORS errors
 
-**Important**: The Betterstack status API does not include CORS headers, which means direct browser requests will fail with:
+✅ **Solved!** The package now uses a hosted proxy service by default, so you won't encounter CORS errors.
+
+**For reference** (if you were using the old version): The Betterstack status API does not include CORS headers, which meant direct browser requests would fail with:
 
 ```
 Access to fetch at 'https://status.zama.ai/index.json' from origin 'http://localhost:3000'

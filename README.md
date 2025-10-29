@@ -142,65 +142,35 @@ export default function RootLayout({ children }) {
 
 For more examples and API documentation, see the [package README](./packages/core/README.md).
 
-## ⚠️ CORS Limitation & Solutions
+## ✅ No CORS Issues - Works Out of the Box!
 
-The Betterstack status API does not include CORS headers, which prevents direct browser requests from working. You'll see this error:
+The package now uses a hosted proxy service at `https://zama-relay-service-monitor-example.vercel.app/api/status` by default, which means:
 
-```
-Access-Control-Allow-Origin header is present on the requested resource
-```
-
-### Solutions by Framework
-
-**Next.js (Recommended)**: Use an API route as a server-side proxy (see [example/app/api/status/route.ts](./example/app/api/status/route.ts))
+✅ **No backend required** - Works with pure frontend apps
+✅ **No CORS configuration** - Just install and use
+✅ **No proxy setup** - Everything works immediately
+✅ **Global CDN** - Fast response times worldwide
 
 ```tsx
-// app/api/status/route.ts
-export async function GET() {
-  const response = await fetch('https://status.zama.ai/index.json');
-  const data = await response.json();
-  return NextResponse.json(data, {
-    headers: { 'Access-Control-Allow-Origin': '*' },
-  });
-}
+import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
+import '@zama-ai/service-status-monitor/dist/style.css';
 
-// Component usage
-<ServiceStatusBadge apiUrl="/api/status" />
-```
-
-**Create React App**: Use proxy in `package.json`
-```json
-{
-  "proxy": "https://status.zama.ai"
+function App() {
+  return <ServiceStatusBadge />;
 }
 ```
 
-**Vite**: Configure proxy in `vite.config.ts`
-```typescript
-export default defineConfig({
-  server: {
-    proxy: {
-      '/api/status': {
-        target: 'https://status.zama.ai',
-        changeOrigin: true,
-        rewrite: (path) => '/index.json'
-      }
-    }
-  }
-});
+That's it! No configuration needed. The component will automatically use the hosted proxy service.
+
+### Custom API URL (Optional)
+
+If you want to use your own proxy service, you can still override the default:
+
+```tsx
+<ServiceStatusBadge apiUrl="https://your-proxy.example.com/api/status" />
 ```
 
-**Express Backend**: Create a dedicated proxy endpoint
-```javascript
-app.get('/api/status', async (req, res) => {
-  const response = await fetch('https://status.zama.ai/index.json');
-  const data = await response.json();
-  res.header('Access-Control-Allow-Origin', '*');
-  res.json(data);
-});
-```
-
-For detailed implementation guides, see [CORS_SOLUTIONS.md](./CORS_SOLUTIONS.md).
+For self-hosting the proxy service, see [status-proxy-service/](./status-proxy-service/) directory.
 
 ## 🎨 Live Demo
 

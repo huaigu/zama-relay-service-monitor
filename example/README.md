@@ -2,25 +2,15 @@
 
 This is a Next.js 15 application demonstrating the usage of `@zama-ai/service-status-monitor` package.
 
-## ⚠️ Important: CORS Proxy Requirement
+## ✅ No Special Configuration Needed!
 
-**This example uses a Next.js API route as a proxy** to work around CORS limitations of the Betterstack API.
+This example demonstrates the `@zama-ai/service-status-monitor` package using the default configuration. The package now includes a hosted proxy service, so:
 
-The Betterstack status API (`https://status.zama.ai/index.json`) does not include CORS headers, which means direct browser requests will fail with:
-```
-Access to fetch at 'https://status.zama.ai/index.json' from origin 'http://localhost:3000'
-has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present.
-```
+✅ **No API routes needed** - The example no longer requires local proxy routes
+✅ **Works immediately** - Just install and use the component
+✅ **No CORS issues** - The hosted proxy handles everything
 
-### Solution: Server-Side Proxy
-
-This example implements a Next.js API route (`/api/status/route.ts`) that:
-- Fetches status data server-side (no CORS restrictions)
-- Adds appropriate CORS headers to the response
-- Caches responses for 30 seconds to improve performance
-- Returns data to the client
-
-**For other frameworks**, you'll need similar backend proxy solutions. See the [CORS Solutions Guide](../CORS_SOLUTIONS.md) for framework-specific implementations.
+The component automatically fetches data from `https://zama-relay-service-monitor-example.vercel.app/api/status`.
 
 ## 🚀 Getting Started
 
@@ -118,9 +108,6 @@ Changes to the package in `../packages/core/src` will automatically trigger:
 ```
 example/
 ├── app/
-│   ├── api/
-│   │   └── status/
-│   │       └── route.ts    # ⭐ Server-side proxy for CORS
 │   ├── layout.tsx          # Root layout with metadata
 │   ├── page.tsx            # Main demo page
 │   └── globals.css         # Global styles + Tailwind
@@ -131,33 +118,18 @@ example/
 └── tsconfig.json           # TypeScript configuration
 ```
 
-### API Route Implementation
+### Component Usage
 
-The `/api/status/route.ts` is a critical component that enables the component to work:
+Simple! No special configuration needed:
 
-```typescript
-export async function GET() {
-  const response = await fetch('https://status.zama.ai/index.json', {
-    next: { revalidate: 30 }, // Cache for 30 seconds
-  });
-  const data = await response.json();
-
-  return NextResponse.json(data, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
-    },
-  });
-}
-```
-
-The component then uses this proxy endpoint:
 ```tsx
 <ServiceStatusBadge
-  apiUrl="/api/status"  // ← Uses proxy instead of direct API
   onStatusChange={handleStatusChange}
+  style={darkMode ? { /* dark mode styles */ } : {}}
 />
 ```
+
+The component automatically uses the hosted proxy service.
 
 ## 🚀 Deployment
 

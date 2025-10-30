@@ -56,12 +56,16 @@ export default function Home() {
             <div className="flex gap-4 justify-center">
               <a
                 href="https://www.npmjs.com/package/zama-service-status-monitor"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
               >
                 View on npm
               </a>
               <a
-                href="https://github.com/zama-ai/service-status-monitor"
+                href="https://github.com/huaigu/zama-relay-service-monitor"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition font-medium"
               >
                 GitHub
@@ -322,23 +326,37 @@ export default function Home() {
         <footer className="py-12 border-t border-gray-200 dark:border-gray-800">
           <div className="container mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
             <p className="mb-2">
-              Made with ❤️ by the Zama team
+              Made with ❤️ by{' '}
+              <a
+                href="https://x.com/coder_chao"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+              >
+                bojack
+              </a>
             </p>
             <div className="flex gap-4 justify-center">
               <a
-                href="https://www.zama.ai"
+                href="https://status.zama.ai/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
-                Website
+                Data Source
               </a>
               <a
-                href="https://github.com/zama-ai"
+                href="https://github.com/huaigu/zama-relay-service-monitor"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 GitHub
               </a>
               <a
-                href="https://twitter.com/zama_fhe"
+                href="https://x.com/coder_chao"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 Twitter

@@ -1,5 +1,5 @@
 {
-  "name": "@zama-ai/service-status-monitor",
+  "name": "zama-service-status-monitor",
   "version": "1.0.0",
   "description": "Lightweight React/Next.js component for monitoring Betterstack service status with real-time updates",
   "author": "Zama",

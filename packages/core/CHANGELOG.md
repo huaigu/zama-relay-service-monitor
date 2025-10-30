@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-01-XX
 
 ### Added
-- Initial release of @zama-ai/service-status-monitor
+- Initial release of zama-service-status-monitor
 - ServiceStatusBadge component for displaying service status
 - StatusPopover component for detailed service information
 - useServiceStatus hook for data fetching and state management

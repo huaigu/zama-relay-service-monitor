@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Zama Service Status Monitor - Demo',
-  description: 'Live demo of @zama-ai/service-status-monitor package',
+  description: 'Live demo of zama-service-status-monitor package',
 };
 
 export default function RootLayout({

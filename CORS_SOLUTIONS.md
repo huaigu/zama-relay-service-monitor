@@ -74,8 +74,8 @@ export async function OPTIONS() {
 #### Step 2: Use the Proxy
 
 ```tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 export default function Page() {
   return (
@@ -148,8 +148,8 @@ export default async function handler(
 
 ```tsx
 // pages/_app.tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 export default function App({ Component, pageProps }) {
   return (

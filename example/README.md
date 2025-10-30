@@ -1,10 +1,10 @@
 # Service Status Monitor - Live Demo
 
-This is a Next.js 15 application demonstrating the usage of `@zama-ai/service-status-monitor` package.
+This is a Next.js 15 application demonstrating the usage of `zama-service-status-monitor` package.
 
 ## ✅ No Special Configuration Needed!
 
-This example demonstrates the `@zama-ai/service-status-monitor` package using the default configuration. The package now includes a hosted proxy service, so:
+This example demonstrates the `zama-service-status-monitor` package using the default configuration. The package now includes a hosted proxy service, so:
 
 ✅ **No API routes needed** - The example no longer requires local proxy routes
 ✅ **Works immediately** - Just install and use the component
@@ -58,8 +58,8 @@ This example showcases:
 ### Basic Badge
 
 ```tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 export default function App() {
   return <ServiceStatusBadge />;
@@ -94,7 +94,7 @@ This example is part of a monorepo and uses the local package via workspace refe
 ```json
 {
   "dependencies": {
-    "@zama-ai/service-status-monitor": "workspace:*"
+    "zama-service-status-monitor": "workspace:*"
   }
 }
 ```
@@ -147,7 +147,7 @@ The Vercel configuration is in the root `vercel.json` file.
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Package**: @zama-ai/service-status-monitor (workspace)
+- **Package**: zama-service-status-monitor (workspace)
 
 ## 🔗 Links
 

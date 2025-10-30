@@ -70,7 +70,7 @@ fetch('/api/status')
   .then(res => res.json())
   .then(data => console.log(data));
 
-// With @zama-ai/service-status-monitor
+// With zama-service-status-monitor
 <ServiceStatusBadge
   apiUrl="${typeof window !== 'undefined' ? window.location.origin : ''}/api/status"
 />`}
@@ -100,7 +100,7 @@ fetch('/api/status')
           </a>
           {' | '}
           <a
-            href="https://www.npmjs.com/package/@zama-ai/service-status-monitor"
+            href="https://www.npmjs.com/package/zama-service-status-monitor"
             style={{ color: '#0070f3', textDecoration: 'none' }}
           >
             npm

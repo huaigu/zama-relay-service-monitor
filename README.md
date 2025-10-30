@@ -1,6 +1,6 @@
-# @zama-ai/service-status-monitor
+# zama-service-status-monitor
 
-[![npm version](https://img.shields.io/npm/v/@zama-ai/service-status-monitor.svg)](https://www.npmjs.com/package/@zama-ai/service-status-monitor)
+[![npm version](https://img.shields.io/npm/v/zama-service-status-monitor.svg)](https://www.npmjs.com/package/zama-service-status-monitor)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Lightweight React/Next.js component for monitoring Betterstack service status with real-time updates.
@@ -105,16 +105,16 @@ pnpm clean
 ### Installation
 
 ```bash
-npm install @zama-ai/service-status-monitor
+npm install zama-service-status-monitor
 # or
-pnpm add @zama-ai/service-status-monitor
+pnpm add zama-service-status-monitor
 ```
 
 ### Basic Usage
 
 ```tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 function App() {
   return <ServiceStatusBadge />;
@@ -125,8 +125,8 @@ function App() {
 
 ```tsx
 // app/layout.tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 export default function RootLayout({ children }) {
   return (
@@ -152,8 +152,8 @@ The package now uses a hosted proxy service at `https://zama-relay-service-monit
 ✅ **Global CDN** - Fast response times worldwide
 
 ```tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 function App() {
   return <ServiceStatusBadge />;
@@ -242,7 +242,7 @@ MIT © [Zama](https://www.zama.ai)
 
 ## 🔗 Links
 
-- [npm Package](https://www.npmjs.com/package/@zama-ai/service-status-monitor)
+- [npm Package](https://www.npmjs.com/package/zama-service-status-monitor)
 - [Zama Website](https://www.zama.ai)
 - [GitHub Issues](https://github.com/zama-ai/service-status-monitor/issues)
 - [Betterstack Status Pages](https://betterstack.com/better-uptime)

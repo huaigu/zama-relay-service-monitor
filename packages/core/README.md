@@ -1,6 +1,6 @@
-# @zama-ai/service-status-monitor
+# zama-service-status-monitor
 
-[![npm version](https://img.shields.io/npm/v/@zama-ai/service-status-monitor.svg)](https://www.npmjs.com/package/@zama-ai/service-status-monitor)
+[![npm version](https://img.shields.io/npm/v/zama-service-status-monitor.svg)](https://www.npmjs.com/package/zama-service-status-monitor)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Lightweight React component for monitoring Betterstack service status with real-time updates. Works with any React framework (Create React App, Vite, Next.js, Remix, Gatsby). Display your service status as a sleek badge in the corner of your application.
@@ -20,19 +20,19 @@ Lightweight React component for monitoring Betterstack service status with real-
 ## 📦 Installation
 
 ```bash
-npm install @zama-ai/service-status-monitor
+npm install zama-service-status-monitor
 ```
 
 or with yarn:
 
 ```bash
-yarn add @zama-ai/service-status-monitor
+yarn add zama-service-status-monitor
 ```
 
 or with pnpm:
 
 ```bash
-pnpm add @zama-ai/service-status-monitor
+pnpm add zama-service-status-monitor
 ```
 
 ## 🚀 Quick Start
@@ -42,8 +42,8 @@ pnpm add @zama-ai/service-status-monitor
 The package now includes a hosted proxy service, so you can use it immediately without any backend setup:
 
 ```tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 function App() {
   return (
@@ -61,8 +61,8 @@ That's it! The component will automatically fetch status data from the hosted pr
 
 ```tsx
 // app/layout.tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 export default function RootLayout({
   children,
@@ -85,8 +85,8 @@ export default function RootLayout({
 ```tsx
 // pages/_app.tsx
 import type { AppProps } from 'next/app';
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -102,8 +102,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
 ```tsx
 // src/App.tsx or src/App.jsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 function App() {
   return (
@@ -123,8 +123,8 @@ export default App;
 
 ```tsx
 // src/App.tsx or src/App.jsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 function App() {
   return (
@@ -288,7 +288,7 @@ function App() {
 For advanced use cases, you can use the `useServiceStatus` hook directly:
 
 ```tsx
-import { useServiceStatus } from '@zama-ai/service-status-monitor';
+import { useServiceStatus } from 'zama-service-status-monitor';
 
 function CustomStatusDisplay() {
   const { status, availability, isLoading, error, refresh } = useServiceStatus({
@@ -339,7 +339,7 @@ import type {
   ServiceStatusBadgeProps,
   ServiceStatusData,
   BetterstackApiResponse,
-} from '@zama-ai/service-status-monitor';
+} from 'zama-service-status-monitor';
 ```
 
 ## 🐛 Troubleshooting
@@ -348,7 +348,7 @@ import type {
 
 1. Make sure you've imported the CSS file:
    ```tsx
-   import '@zama-ai/service-status-monitor/dist/style.css';
+   import 'zama-service-status-monitor/dist/style.css';
    ```
 
 2. Check if there are z-index conflicts. You can adjust the z-index:
@@ -376,7 +376,7 @@ The component is designed to be SSR-safe. However, if you encounter issues, you 
 import dynamic from 'next/dynamic';
 
 const ServiceStatusBadge = dynamic(
-  () => import('@zama-ai/service-status-monitor').then(mod => mod.ServiceStatusBadge),
+  () => import('zama-service-status-monitor').then(mod => mod.ServiceStatusBadge),
   { ssr: false }
 );
 ```
@@ -405,7 +405,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 - [Zama](https://www.zama.ai)
 - [Betterstack Status Pages](https://betterstack.com/better-uptime)
-- [npm Package](https://www.npmjs.com/package/@zama-ai/service-status-monitor)
+- [npm Package](https://www.npmjs.com/package/zama-service-status-monitor)
 
 ---
 

@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get up and running with `@zama-ai/service-status-monitor` in under 5 minutes!
+Get up and running with `zama-service-status-monitor` in under 5 minutes!
 
 ## 📋 Prerequisites
 
@@ -41,7 +41,7 @@ npm link
 Then in your React/Next.js project:
 
 ```bash
-npm link @zama-ai/service-status-monitor
+npm link zama-service-status-monitor
 ```
 
 ### Step 4: Use in Your Project
@@ -50,8 +50,8 @@ npm link @zama-ai/service-status-monitor
 
 ```tsx
 // App.tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 function App() {
   return (
@@ -69,8 +69,8 @@ export default App;
 
 ```tsx
 // app/layout.tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 export default function RootLayout({ children }) {
   return (
@@ -98,7 +98,7 @@ npm login
 npm publish --access public
 ```
 
-> **Note**: The package name `@zama-ai/service-status-monitor` requires the `@zama-ai` scope to exist on npm. If you don't have access, you can:
+> **Note**: The package name `zama-service-status-monitor` requires the `@zama-ai` scope to exist on npm. If you don't have access, you can:
 > 1. Change the name in `package.json` to something else
 > 2. Or publish under your own scope: `@your-username/service-status-monitor`
 
@@ -119,13 +119,13 @@ npm publish --access public
 
 3. Link your package:
    ```bash
-   npm link @zama-ai/service-status-monitor
+   npm link zama-service-status-monitor
    ```
 
 4. Add to your `test-app/src/App.tsx`:
    ```tsx
-   import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-   import '@zama-ai/service-status-monitor/dist/style.css';
+   import { ServiceStatusBadge } from 'zama-service-status-monitor';
+   import 'zama-service-status-monitor/dist/style.css';
 
    function App() {
      return (
@@ -246,7 +246,7 @@ In your global CSS:
 
 1. Make sure you imported the CSS:
    ```tsx
-   import '@zama-ai/service-status-monitor/dist/style.css';
+   import 'zama-service-status-monitor/dist/style.css';
    ```
 
 2. Check browser console for errors
@@ -272,7 +272,7 @@ If you get "window is not defined" errors:
 import dynamic from 'next/dynamic';
 
 const ServiceStatusBadge = dynamic(
-  () => import('@zama-ai/service-status-monitor').then(m => m.ServiceStatusBadge),
+  () => import('zama-service-status-monitor').then(m => m.ServiceStatusBadge),
   { ssr: false }
 );
 ```

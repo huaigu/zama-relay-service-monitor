@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
-import type { ServiceStatus } from '@zama-ai/service-status-monitor';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
+import type { ServiceStatus } from 'zama-service-status-monitor';
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -55,7 +55,7 @@ export default function Home() {
             </p>
             <div className="flex gap-4 justify-center">
               <a
-                href="https://www.npmjs.com/package/@zama-ai/service-status-monitor"
+                href="https://www.npmjs.com/package/zama-service-status-monitor"
                 className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
               >
                 View on npm
@@ -79,12 +79,12 @@ export default function Home() {
             <code className="text-green-400">
               <span className="text-gray-500"># Install the package</span>
               <br />
-              npm install @zama-ai/service-status-monitor
+              npm install zama-service-status-monitor
               <br />
               <br />
               <span className="text-gray-500"># Or with pnpm</span>
               <br />
-              pnpm add @zama-ai/service-status-monitor
+              pnpm add zama-service-status-monitor
             </code>
           </div>
         </section>
@@ -145,10 +145,10 @@ export default function Home() {
                 <span className="text-purple-400">import</span>{' '}
                 <span className="text-blue-400">{'{ ServiceStatusBadge }'}</span>{' '}
                 <span className="text-purple-400">from</span>{' '}
-                <span className="text-green-400">'@zama-ai/service-status-monitor'</span>;
+                <span className="text-green-400">'zama-service-status-monitor'</span>;
                 <br />
                 <span className="text-purple-400">import</span>{' '}
-                <span className="text-green-400">'@zama-ai/service-status-monitor/dist/style.css'</span>;
+                <span className="text-green-400">'zama-service-status-monitor/dist/style.css'</span>;
                 <br />
                 <br />
                 <span className="text-purple-400">function</span>{' '}

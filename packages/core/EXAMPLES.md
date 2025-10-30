@@ -12,8 +12,8 @@
 ### Simple React App
 
 ```tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 
 function App() {
   return (
@@ -37,8 +37,8 @@ export default App;
 ```tsx
 // app/layout.tsx
 import type { Metadata } from 'next';
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -67,8 +67,8 @@ export default function RootLayout({
 ```tsx
 // pages/_app.tsx
 import type { AppProps } from 'next/app';
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
+import 'zama-service-status-monitor/dist/style.css';
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -93,7 +93,7 @@ If you need to use it in a server component context:
 // app/components/StatusMonitor.tsx
 'use client';
 
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
 
 export function StatusMonitor() {
   return <ServiceStatusBadge />;
@@ -103,7 +103,7 @@ export function StatusMonitor() {
 ```tsx
 // app/layout.tsx
 import { StatusMonitor } from './components/StatusMonitor';
-import '@zama-ai/service-status-monitor/dist/style.css';
+import 'zama-service-status-monitor/dist/style.css';
 
 export default function RootLayout({ children }) {
   return (
@@ -207,8 +207,8 @@ export default function RootLayout({ children }) {
 ### Custom Dashboard Component
 
 ```tsx
-import { useServiceStatus } from '@zama-ai/service-status-monitor';
-import { formatAvailability } from '@zama-ai/service-status-monitor';
+import { useServiceStatus } from 'zama-service-status-monitor';
+import { formatAvailability } from 'zama-service-status-monitor';
 
 function ServiceDashboard() {
   const {
@@ -258,7 +258,7 @@ function ServiceDashboard() {
 ### Multiple Services Monitor
 
 ```tsx
-import { useServiceStatus } from '@zama-ai/service-status-monitor';
+import { useServiceStatus } from 'zama-service-status-monitor';
 
 const SERVICES = [
   'Relayer - Testnet',
@@ -297,7 +297,7 @@ function MultiServiceMonitor() {
 ### Status Change Callback
 
 ```tsx
-import { ServiceStatusBadge, ServiceStatus } from '@zama-ai/service-status-monitor';
+import { ServiceStatusBadge, ServiceStatus } from 'zama-service-status-monitor';
 import { useState } from 'react';
 
 function App() {
@@ -338,7 +338,7 @@ function App() {
 ### Integration with Analytics
 
 ```tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
 
 function App() {
   const handleStatusChange = (status: ServiceStatus) => {
@@ -366,7 +366,7 @@ function App() {
 ### Custom Toast Notifications
 
 ```tsx
-import { ServiceStatusBadge } from '@zama-ai/service-status-monitor';
+import { ServiceStatusBadge } from 'zama-service-status-monitor';
 import { toast } from 'react-hot-toast'; // or your preferred toast library
 
 function App() {
@@ -393,7 +393,7 @@ function App() {
 ### Typed Component
 
 ```tsx
-import { ServiceStatusBadge, ServiceStatusBadgeProps } from '@zama-ai/service-status-monitor';
+import { ServiceStatusBadge, ServiceStatusBadgeProps } from 'zama-service-status-monitor';
 
 const config: ServiceStatusBadgeProps = {
   serviceName: 'Relayer - Testnet',
@@ -417,7 +417,7 @@ import {
   useServiceStatus,
   ServiceStatusData,
   ServiceStatus
-} from '@zama-ai/service-status-monitor';
+} from 'zama-service-status-monitor';
 
 function useZamaServiceMonitor() {
   const statusData: ServiceStatusData = useServiceStatus({

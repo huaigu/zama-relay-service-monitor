@@ -1,6 +1,6 @@
 # Zama Status Proxy Service
 
-Lightweight Next.js proxy service for the Zama Betterstack status API. This service provides a CORS-enabled endpoint that can be used by the `@zama-ai/service-status-monitor` npm package and any frontend application.
+Lightweight Next.js proxy service for the Zama Betterstack status API. This service provides a CORS-enabled endpoint that can be used by the `zama-service-status-monitor` npm package and any frontend application.
 
 ## 🎯 Purpose
 
@@ -294,7 +294,7 @@ MIT © [Zama](https://www.zama.ai)
 ## 🔗 Links
 
 - [Zama Website](https://www.zama.ai)
-- [npm Package](https://www.npmjs.com/package/@zama-ai/service-status-monitor)
+- [npm Package](https://www.npmjs.com/package/zama-service-status-monitor)
 - [Main Repository](../)
 - [Vercel Documentation](https://vercel.com/docs)
 

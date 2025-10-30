@@ -5,7 +5,12 @@ const CACHE_TTL = 30; // seconds
 
 export async function GET() {
   try {
-    const response = await fetch(BETTERSTACK_API_URL, {
+    // Add cache-busting parameter that changes every 30 seconds
+    // This ensures we bypass any upstream caching from Betterstack
+    const cacheBuster = Math.floor(Date.now() / (CACHE_TTL * 1000));
+    const apiUrl = `${BETTERSTACK_API_URL}?t=${cacheBuster}`;
+
+    const response = await fetch(apiUrl, {
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'Zama-Status-Proxy/1.0',

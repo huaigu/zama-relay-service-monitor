@@ -3,14 +3,90 @@ import { NextResponse } from 'next/server';
 const BETTERSTACK_API_URL = 'https://status.zama.ai/index.json';
 const CACHE_TTL = 30; // seconds
 
+const NEXT_DATA_REGEX =
+  /<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/i;
+
+type BetterstackLikePayload = {
+  data: unknown;
+  included: unknown[];
+};
+
+const htmlEntities: Record<string, string> = {
+  '&quot;': '"',
+  '&#34;': '"',
+  '&amp;': '&',
+  '&#38;': '&',
+  '&lt;': '<',
+  '&#60;': '<',
+  '&gt;': '>',
+  '&#62;': '>',
+  '&#39;': "'",
+  '&#x27;': "'",
+  '&#x2F;': '/',
+};
+
+function decodeHtmlEntities(value: string) {
+  return value.replace(/&quot;|&#34;|&amp;|&#38;|&lt;|&#60;|&gt;|&#62;|&#39;|&#x27;|&#x2F;/g, (entity) =>
+    htmlEntities[entity] ?? entity
+  );
+}
+
+function findBetterstackPayload(value: unknown): BetterstackLikePayload | null {
+  if (!value || typeof value !== 'object') {
+    return null;
+  }
+
+  const candidate = value as Record<string, unknown>;
+  const dataField = candidate['data'];
+  const includedField = candidate['included'];
+  if (dataField && typeof dataField === 'object' && Array.isArray(includedField)) {
+    return {
+      data: dataField,
+      included: includedField,
+    };
+  }
+
+  for (const key of Object.keys(candidate)) {
+    const nestedValue = candidate[key];
+    if (!nestedValue) continue;
+
+    if (Array.isArray(nestedValue)) {
+      for (const item of nestedValue) {
+        const nestedCandidate = findBetterstackPayload(item);
+        if (nestedCandidate) {
+          return nestedCandidate;
+        }
+      }
+    } else if (typeof nestedValue === 'object') {
+      const nestedCandidate = findBetterstackPayload(nestedValue);
+      if (nestedCandidate) {
+        return nestedCandidate;
+      }
+    }
+  }
+
+  return null;
+}
+
+function extractPayloadFromHtml(html: string): BetterstackLikePayload | null {
+  const match = html.match(NEXT_DATA_REGEX);
+  if (!match?.[1]) {
+    return null;
+  }
+
+  try {
+    const nextDataJson = decodeHtmlEntities(match[1]);
+    const nextData = JSON.parse(nextDataJson);
+    return findBetterstackPayload(nextData);
+  } catch (error) {
+    console.error('[Status API] Failed to parse __NEXT_DATA__ payload:', error);
+    return null;
+  }
+}
+
 export async function GET() {
   try {
-    // Add cache-busting parameter that changes every 30 seconds
-    // This ensures we bypass any upstream caching from Betterstack
-    const cacheBuster = Math.floor(Date.now() / (CACHE_TTL * 1000));
-    const apiUrl = `${BETTERSTACK_API_URL}?t=${cacheBuster}`;
-
-    const response = await fetch(apiUrl, {
+    const response = await fetch(BETTERSTACK_API_URL, {
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'Zama-Status-Proxy/1.0',
@@ -24,7 +100,32 @@ export async function GET() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
+    const contentType = response.headers.get('content-type') ?? '';
+    const rawBody = await response.text();
+    const isJsonContent = contentType.toLowerCase().includes('application/json');
+
+    if (!isJsonContent) {
+      console.warn(
+        `[Status API] Unexpected content type: ${contentType || 'unknown'}. Attempting HTML fallback.`
+      );
+    }
+
+    let data: unknown;
+    try {
+      data = JSON.parse(rawBody);
+    } catch (parseError) {
+      const preview = rawBody.slice(0, 2000);
+      console.error('[Status API] Failed to parse upstream JSON:', parseError);
+      console.error('[Status API] Response preview:', preview);
+
+      const extracted = extractPayloadFromHtml(rawBody);
+      if (!extracted) {
+        throw new Error('Invalid JSON received from upstream API');
+      }
+
+      console.warn('[Status API] Extracted payload from HTML fallback.');
+      data = extracted;
+    }
 
     // Return with CORS headers and caching
     return NextResponse.json(data, {

@@ -21,5 +21,12 @@
     "monitoring"
   ],
   "author": "Zama",
-  "license": "MIT"
+  "license": "MIT",
+  "pnpm": {
+    "overrides": {
+      "postcss@<8.5.23": "8.5.23",
+      "nanoid@^3": "3.3.18",
+      "next@15.5.27>sharp": "0.35.5"
+    }
+  }
 }
